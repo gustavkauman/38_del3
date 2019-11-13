@@ -1,9 +1,7 @@
 package IOOuterActive;
 
-import IOOuterActive.Languages.Language;
-
 class Account {
-    private Language language = new Language();
+
     private int money;
 
     //Returns the current balance of money
@@ -19,7 +17,6 @@ class Account {
     //Adds the value of the input to the balance and returns a confirmation message
     String addMoney(int money) {
         this.money += money;
-        language.languageOutput(17);
         return money + "$";
     }
 
@@ -29,18 +26,15 @@ class Account {
 
         if (this.money < money) {
             this.money = 0;
-            language.languageOutput(18);
             return money + "$";
         } else {
             this.money -= money;
-            language.languageOutput(16);
             return money + "$";
         }
     }
 
     //Returns a string with a message about the account balance
     int toStringBalance(int money) {
-        language.languageOutput(15);
         return money;
     }
 
