@@ -1,12 +1,12 @@
 package IOOuterActive;
 
 class Die {
-    //generates random value between 1 and 6 and returns that value
+    private int faces;
+
+    Die(int x){
+        faces = x;
+    }
     int roll() {
-        //Attributer
-        // max value
-        int maxval = 6;
-        //current value
-        return (int) (Math.random() * maxval) + 1;
+        return (int) (Math.random() * faces) + 1;
     }
 }
