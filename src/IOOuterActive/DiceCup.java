@@ -2,6 +2,12 @@ package IOOuterActive;
 
 class DiceCup {
 
+    int numberOfDice;
+
+    public DiceCup(int x) {
+        numberOfDice =x;
+    }
+
     // Attributes
     private final Die t1;
     private final Die t2;
