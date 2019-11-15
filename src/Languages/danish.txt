@@ -1,0 +1,6 @@
+TestKey
+Tekst til testkey.
+NyLinje
+tekst til nylinje.
+Spillehallen
+Du er landet på spillehallen bla bla bla.
