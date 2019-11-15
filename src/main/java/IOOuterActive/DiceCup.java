@@ -2,16 +2,15 @@ package IOOuterActive;
 
 class DiceCup {
 
-    Die[] dices;
+    private Die[] dices;
 
-    public DiceCup(int numberOfDice, int numberOfFaces) {
+    DiceCup(int numberOfDice, int numberOfFaces) {
 
         this.dices = new Die[numberOfDice];
 
         for (int i = 0; i<dices.length; i++) {
             dices[i] = new Die(numberOfFaces);
         }
-
     }
 
     void throwDice() {
