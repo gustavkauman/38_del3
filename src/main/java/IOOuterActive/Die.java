@@ -2,11 +2,17 @@ package IOOuterActive;
 
 class Die {
     private int faces;
+    private int faceValue;
 
     Die(int x){
-        faces = x;
+        this.faces = x;
     }
-    int roll() {
-        return (int) (Math.random() * faces) + 1;
+
+    void roll() {
+        this.faceValue = (int) (Math.random() * faces) + 1;
+    }
+
+    public int getFaceValue() {
+        return faceValue;
     }
 }

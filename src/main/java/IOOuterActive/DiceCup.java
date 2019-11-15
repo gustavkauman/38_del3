@@ -2,31 +2,29 @@ package IOOuterActive;
 
 class DiceCup {
 
-    int numberOfDice;
+    Die[] dices;
 
-    public DiceCup(int x) {
-        numberOfDice =x;
+    public DiceCup(int numberOfDice, int numberOfFaces) {
+
+        this.dices = new Die[numberOfDice];
+
+        for (int i = 0; i<dices.length; i++) {
+            dices[i] = new Die(numberOfFaces);
+        }
+
     }
 
-    // Attributes
-    private final Die t1;
-    private final Die t2;
-    private int outcome1, outcome2;
-
-    //Contructor. Creates two die objects
-    DiceCup() {
-        t1 = new Die();
-        t2 = new Die();
-    }
-
-    //Rolls two die objects with the roll-method form the die-class
     void throwDice() {
-        outcome1 = t1.roll();
-        outcome2 = t2.roll();
-    }
+        for (Die die : dices) {
+            die.roll();
+        }
+     }
 
-    //Adds the two facevalues and saves the sum
     int getSum() {
-        return outcome1 + outcome2;
+        int sum = 0;
+        for (Die die: dices) {
+            sum += die.getFaceValue();
+        }
+        return sum;
     }
 }
