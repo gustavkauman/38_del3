@@ -1,4 +1,4 @@
-package field;
+package main.java.field;
 
 /**
  * The general template for each field (Superclass)
@@ -12,10 +12,8 @@ public class Field {
     private int id;
 
     public Field(String name, int id){
-
         this.name = name;
         this.id = id;
-
     }
 
     /**
@@ -26,7 +24,6 @@ public class Field {
 
         return name +"\t" + id;
     }
-
 
 
 
