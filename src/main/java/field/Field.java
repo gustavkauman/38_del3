@@ -16,15 +16,6 @@ public class Field {
         this.id = id;
     }
 
-    /**
-     * @return
-     * A string containing the name and id of the field
-     */
-    public String getField(){
-
-        return name +"\t" + id;
-    }
-
 
 
 }
