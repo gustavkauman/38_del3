@@ -1,4 +1,4 @@
-package main.java.IOOuterActive.field;
+package IOOuterActive.field;
 
 /**
  * The general template for each field (Superclass)

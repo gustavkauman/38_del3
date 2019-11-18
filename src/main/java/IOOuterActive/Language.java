@@ -1,4 +1,4 @@
-package main.java.IOOuterActive;
+package IOOuterActive;
 
 import java.io.*;
 import java.util.HashMap;
