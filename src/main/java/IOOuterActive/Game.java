@@ -1,4 +1,4 @@
-package IOOuterActive;
+package main.java.IOOuterActive;
 
 public class Game {
 

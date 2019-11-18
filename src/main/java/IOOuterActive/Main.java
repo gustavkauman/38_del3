@@ -1,4 +1,4 @@
-package IOOuterActive;
+package main.java.IOOuterActive;
 
 import java.io.IOException;
 import java.util.Map;

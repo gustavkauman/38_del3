@@ -1,4 +1,4 @@
-package IOOuterActive;
+package main.java.IOOuterActive;
 
 class Die {
     private int faces;

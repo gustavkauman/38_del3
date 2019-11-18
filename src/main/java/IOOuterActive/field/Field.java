@@ -1,4 +1,4 @@
-package main.java.field;
+package main.java.IOOuterActive.field;
 
 /**
  * The general template for each field (Superclass)
@@ -11,7 +11,7 @@ public class Field {
     private String name;
     private int id;
 
-    public Field(String name, int id){
+    public Field(String name, int id) {
         this.name = name;
         this.id = id;
     }
