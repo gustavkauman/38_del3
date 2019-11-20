@@ -5,7 +5,32 @@ class Player {
     //Attributes
     private String name;
     private Account account = new Account();
-    private boolean jailed = false, fallit = false;
+    private boolean jailed = false, fallit = false, playerSpecificCard = false;
+    private int jailCards = 0, currentField = 0;
+
+    public int getCurrentField() {
+        return currentField;
+    }
+
+    public void setCurrentField(int currentField) {
+        this.currentField = currentField;
+    }
+
+    public boolean isPlayerSpecificCard() {
+        return playerSpecificCard;
+    }
+
+    public void setPlayerSpecificCard(boolean playerSpecificCard) {
+        this.playerSpecificCard = playerSpecificCard;
+    }
+
+    public int getJailCards() {
+        return jailCards;
+    }
+
+    public void setJailCards(int jailCards) {
+        this.jailCards = jailCards;
+    }
 
     public boolean isJailed() {
         return jailed;

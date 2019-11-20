@@ -8,7 +8,7 @@ public class CardBundle {
 
     public void createCards(){
         cards[0] = new Card("GiveToCar", "Giv dette kort til BILEN, og tag et chancekort mere. \n BIL: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
-                "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!");
+                "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!"); //TODO: Prob ændre bil, skib osv. til spiller 1, spiller 2 ...
 
         cards[1] = new Card("GoToStart", "Ryk frem til START. Modtag $2.");
         cards[2] = new Card("Move5", "Ryk op til 5 felter frem.");
