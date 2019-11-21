@@ -26,5 +26,9 @@ public class Language {
         return output;
     }
 
+    public String getOutputMessage(String key) {
+        return output.get(key);
+    }
+
 }
 
