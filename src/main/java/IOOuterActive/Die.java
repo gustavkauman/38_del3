@@ -1,6 +1,6 @@
 package IOOuterActive;
 
-class Die {
+public class Die {
     private int faces;
     private int faceValue;
 

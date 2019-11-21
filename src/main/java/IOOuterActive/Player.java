@@ -1,6 +1,6 @@
 package IOOuterActive;
 
-class Player {
+public class Player {
 
     //Attributes
     private String name;
