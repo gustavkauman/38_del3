@@ -35,6 +35,8 @@ public class GameController {
      */
     private GUI createGUIBoard() {
 
+        //TODO update all class names to the appropriate ones.
+
         Field[] fields = gb.getFieldsInfo()?;
         GUI_Field[] guiFields = new GUI_Field[fields.length];
 
