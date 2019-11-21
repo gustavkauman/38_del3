@@ -1,10 +1,13 @@
 package IOOuterActive;
 
+import IOOuterActive.game.Game;
+
 import java.io.IOException;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         DiceCup dg = new DiceCup(6,2);
         System.out.println(dg.getSum());
         dg.throwDice();
@@ -31,5 +34,6 @@ public class Main {
 
         Game game = new Game();
         game.playGame();
+         */
     }
 }
