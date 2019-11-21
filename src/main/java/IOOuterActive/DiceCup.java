@@ -19,6 +19,10 @@ class DiceCup {
         }
      }
 
+    Die[] getDices() {
+        return this.dices;
+    }
+
     int getSum() {
         int sum = 0;
         for (Die die: dices) {
