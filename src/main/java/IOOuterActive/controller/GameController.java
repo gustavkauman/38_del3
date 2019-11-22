@@ -7,12 +7,14 @@ import gui_fields.*;
 import gui_main.GUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameController {
 
     private Language lang;
     private GameBoard gb;
     private MatadorJuniorGUI out;
+    private Player[] players;
 
     public GameController() throws IOException {
         this.lang = new Language();
@@ -25,7 +27,50 @@ public class GameController {
 
     public void playGame() {
 
+        createPlayers();
+
+        for(int i = 0; i < players.length; i++){
+            System.out.println("Navn: " + players[i].getName() + "\nAlder: " + players[i].getAge() + "\n------");
+        }
+
+
         out.beginGame();
+
+    }
+
+    private void createPlayers() {
+
+        out.showMessage("AntalSpillere");
+        int numberOfPlayers = out.getUserInteger("Indtast antal spillere", 2, 4);
+        players = new Player[numberOfPlayers];
+
+        for(int i = 0; i < players.length; i++){
+            players[i] = new Player();
+
+            out.showMessage("OpretSpillerNavn");
+            String name = out.getUserString("Indtast navn");
+            players[i].setName(name);
+
+            out.showMessage("OpretSpillerAlder");
+            int age = out.getUserInteger("Indtast alder", 3, 150);
+            players[i].setAge(age);
+        }
+
+        Player[] sortedPlayers = new Player[players.length];
+
+        for(int i = 0; i < players.length; i++){
+            int pos = 0;
+            for(int j = 0; j < players.length; j++){
+                if(players[i].getAge() > players[j].getAge()){
+                    pos++;
+                }
+            }
+
+            sortedPlayers[pos] = players[i];
+
+        }
+
+        players = sortedPlayers;
 
     }
 

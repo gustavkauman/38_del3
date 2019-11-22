@@ -24,4 +24,21 @@ public class MatadorJuniorGUI {
         this.gui.showMessage(lang.getOutputMessage("beginGameMessage"));
     }
 
+    public void showMessage(String key){
+        gui.showMessage(lang.getOutputMessage(key));
+    }
+
+    public String getUserString(String msg){
+        return gui.getUserString(msg);
+    }
+
+   public int getUserInteger(String msg){
+        return gui.getUserInteger(msg);
+   }
+
+    public int getUserInteger(String msg, int min, int max){
+        return gui.getUserInteger(msg, min, max);
+    }
+
+
 }
