@@ -10,3 +10,5 @@ OpretSpillerAlder
 Indtast venligst alder.
 AntalSpillere
 Indtast det ønskede antal spillere.
+beginGameMessage
+Spillet starter nu!
