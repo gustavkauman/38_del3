@@ -54,24 +54,21 @@ public class GameController {
             players[i].setAge(age);
         }
 
-        for(int j = 0; j < players.length; j++){
+        Player[] sortedPlayers = new Player[players.length];
 
+        for(int i = 0; i < players.length; i++){
+            int pos = 0;
+            for(int j = 0; j < players.length; j++){
+                if(players[i].getAge() > players[j].getAge()){
+                    pos++;
+                }
+            }
 
-
-
+            sortedPlayers[pos] = players[i];
 
         }
 
-
-
-
-
-
-
-
-
-
-
+        players = sortedPlayers;
 
     }
 
