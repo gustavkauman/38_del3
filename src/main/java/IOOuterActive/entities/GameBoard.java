@@ -1,5 +1,8 @@
 package IOOuterActive.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameBoard {
 
     private Field[] fields;
@@ -37,5 +40,24 @@ public class GameBoard {
 
     public Field[] getFields() {
         return fields;
+    }
+
+    public Field[] getFieldsOwnedByPlayer(Player player) {
+
+        List<Field> list = new ArrayList<Field>();
+
+        for (Field field : this.fields) {
+
+            if ( ((PropertyField) field).getOwner() == player) {
+
+                list.add(field);
+
+            }
+
+        }
+
+        Field[] out = new Field[list.size()];
+        return list.toArray(out);
+
     }
 }
