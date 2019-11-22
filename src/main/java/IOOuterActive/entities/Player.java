@@ -54,21 +54,21 @@ public class Player {
     }
 
     //Sets player's name via input
-    void setName(String input) {
+    public void setName(String input) {
         name = input;
     }
 
     //Sets players account balance to the value of the input
-    void setMoney(int amount) {
+    public void setMoney(int amount) {
         account.setMoney(amount);
     }
 
     //Returns current balance of the players account
-    int getMoney() {
+    public int getMoney() {
         return account.getMoney();
     }
 
-    void addMoney(int amount){
+    public void addMoney(int amount){
         if((account.getMoney() - amount) < 0){
             fallit = true;
             account.setMoney(0);
