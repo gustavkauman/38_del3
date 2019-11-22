@@ -9,6 +9,10 @@ public class PrisonField extends Field {
 
     private boolean convicted;
 
+    public boolean convicted() {
+        return convicted;
+    };
+
     public PrisonField(String name, int id){
         super(name,id);
     }
