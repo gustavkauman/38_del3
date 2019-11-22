@@ -1,4 +1,6 @@
-package IOOuterActive.field;
+package IOOuterActive;
+
+import IOOuterActive.Field;
 
 /**
  *
@@ -19,7 +21,6 @@ public class PrisonField extends Field {
     public void imPrison(){
 
         convicted = true;
-
     }
 
     /**
@@ -31,9 +32,5 @@ public class PrisonField extends Field {
             convicted = false;
         else if(card.equals("Release"))
             convicted = false;
-
-
     }
-
-
 }

@@ -1,4 +1,4 @@
-package IOOuterActive.field;
+package IOOuterActive;
 
 /**
  * The general template for each field (Superclass)
@@ -15,7 +15,4 @@ public class Field {
         this.name = name;
         this.id = id;
     }
-
-
-
 }
