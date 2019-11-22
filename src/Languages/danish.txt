@@ -4,3 +4,9 @@ NyLinje
 tekst til nylinje.
 Spillehallen
 Du er landet på spillehallen bla bla bla.
+OpretSpillerNavn
+Indtast venligst navn.
+OpretSpillerAlder
+Indtast venligst alder.
+AntalSpillere
+Indtast det ønskede antal spillere.
