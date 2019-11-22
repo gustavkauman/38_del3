@@ -6,7 +6,7 @@ public class Player {
     private String name;
     private Account account = new Account();
     private boolean jailed = false, fallit = false, playerSpecificCard = false;
-    private int jailCards = 0, currentField = 0;
+    private int jailCards = 0, currentField = 0, age = 0;
 
     public int getCurrentField() {
         return currentField;
@@ -48,8 +48,16 @@ public class Player {
         this.fallit = fallit;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     //Returns the players name
-    String getName() {
+    public String getName() {
         return name;
     }
 
