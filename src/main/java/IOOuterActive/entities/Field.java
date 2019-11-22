@@ -1,4 +1,4 @@
-package IOOuterActive;
+package IOOuterActive.entities;
 
 /**
  * The general template for each field (Superclass)

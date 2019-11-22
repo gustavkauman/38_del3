@@ -1,6 +1,11 @@
-package IOOuterActive;
+package IOOuterActive.controller;
 
 import IOOuterActive.GUI.MatadorJuniorGUI;
+import IOOuterActive.Language;
+import IOOuterActive.entities.ChanceField;
+import IOOuterActive.entities.Field;
+import IOOuterActive.entities.PrisonField;
+import IOOuterActive.entities.PropertyField;
 import gui_fields.*;
 import gui_main.GUI;
 

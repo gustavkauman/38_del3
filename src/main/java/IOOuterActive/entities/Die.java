@@ -1,4 +1,4 @@
-package IOOuterActive;
+package IOOuterActive.entities;
 
 public class Die {
     private int faces;

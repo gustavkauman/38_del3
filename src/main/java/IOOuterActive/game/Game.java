@@ -1,7 +1,7 @@
 package IOOuterActive.game;
 
-import IOOuterActive.Die;
-import IOOuterActive.Player;
+import IOOuterActive.entities.Die;
+import IOOuterActive.entities.Player;
 
 public class Game {
 

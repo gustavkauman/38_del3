@@ -1,7 +1,4 @@
-package IOOuterActive;
-
-import IOOuterActive.Field;
-import IOOuterActive.Player;
+package IOOuterActive.entities;
 
 public class PropertyField extends Field {
 

@@ -1,4 +1,4 @@
-package IOOuterActive;
+package IOOuterActive.entities;
 
 public class Card {
     private String name, text;

@@ -1,6 +1,4 @@
-package IOOuterActive;
-
-import IOOuterActive.Field;
+package IOOuterActive.entities;
 
 /**
  *

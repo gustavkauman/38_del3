@@ -1,4 +1,4 @@
-package IOOuterActive;
+package IOOuterActive.entities;
 
 class Account {
 
