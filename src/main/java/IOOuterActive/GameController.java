@@ -35,25 +35,25 @@ public class GameController {
      */
     private GUI createGUIBoard() {
 
-        //TODO update all class names to the appropriate ones.
+        //TODO update last class name to the appropriate one.
 
         Field[] fields = gb.getFieldsInfo()?;
         GUI_Field[] guiFields = new GUI_Field[fields.length];
 
         for (int i = 0; i < fields.length; i++) {
 
-            if (fields[i] instanceof Property) {
+            if (fields[i] instanceof PropertyField) {
 
                 guiFields[i] = new GUI_Street();
                 guiFields[i].setTitle(fields[i].getName());
                 guiFields[i].setSubText(fields[i].getPrice());
 
-            } else if (fields[i] instanceof Chance) {
+            } else if (fields[i] instanceof ChanceField) {
 
                 guiFields[i] = new GUI_Chance();
                 guiFields[i].setTitle(fields[i].getName());
 
-            } else if (fields[i] instanceof Prison) {
+            } else if (fields[i] instanceof PrisonField) {
 
                 guiFields[i] = new GUI_Jail();
                 guiFields[i].setTitle("Prison");
