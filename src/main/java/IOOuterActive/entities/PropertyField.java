@@ -3,7 +3,7 @@ package IOOuterActive.entities;
 public class PropertyField extends Field {
 
     int price;
-    Player owner;
+    Player owner = null;
     String color;
 
     public PropertyField(String name, int ID, String color, int price) {
