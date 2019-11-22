@@ -60,4 +60,22 @@ public class GameBoard {
         return list.toArray(out);
 
     }
+
+    public Field[] getFieldsByColor (String color) {
+
+        List<Field> list = new ArrayList<Field>();
+        Field[] out = new Field[2];
+
+        for (Field field: this.fields) {
+            if (((PropertyField) field).getColor().equals(color)) {
+                list.add(field);
+            }
+        }
+
+        return list.toArray(out);
+    }
+
+    public boolean fieldsAreOwnedBySamePlayer (Field[] fields) {
+        return ( ((PropertyField) fields[0]).getOwner() == ((PropertyField) fields[1]).getOwner());
+    }
 }

@@ -28,7 +28,7 @@ public class Game {
 
         }
 
-        // Flyt spilleren på pladen
+        // Begin player move
         int currentFieldIndex = player.getCurrentField();
         int endFieldIndex = currentFieldIndex;
 
@@ -47,18 +47,27 @@ public class Game {
 
         }
 
+        // Move player to field
         player.setCurrentField(endFieldIndex);
+        // End player move
 
         if ( gb.getFields()[endFieldIndex] instanceof PropertyField) {
             PropertyField field = (PropertyField) gb.getFields()[endFieldIndex];
 
             if ( field.getOwner() != null) {
-                // Feltet er ejet af en
+                // Field is currently owned by a player
 
                 if (field.getOwner() != player) {
                     // Field is owned by another player. player needs to pay rent.
-                    player.addMoney( field.getPrice() * (-1) );
-                    field.getOwner().addMoney(field.getPrice());
+
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        player.addMoney(field.getPrice() * (-2));
+                        field.getOwner().addMoney((field.getPrice() * 2));
+                    } else {
+                        player.addMoney( field.getPrice() * (-1) );
+                        field.getOwner().addMoney(field.getPrice());
+                    }
+
                 }
 
             } else {
