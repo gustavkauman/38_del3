@@ -29,7 +29,9 @@ public class GameController {
 
         createPlayers();
 
-
+        for(int i = 0; i < players.length; i++){
+            System.out.println("Navn: " + players[i].getName() + "\nAlder: " + players[i].getAge() + "\n------");
+        }
 
 
         out.beginGame();
