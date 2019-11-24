@@ -87,6 +87,10 @@ public class Game {
             player.setJailed(true);
         }
 
+        // Check if player has gone "fallit"
+        if (player.getMoney() < 0)
+            player.setFallit(true);
+
     }
 
     private static void drawCard(Player currentPlayer, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out){

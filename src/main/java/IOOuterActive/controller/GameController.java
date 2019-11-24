@@ -56,6 +56,7 @@ public class GameController {
             // Check if a player is "fallit", so the game needs to end
             if (player.isFallit()) {
                 Game.getWinner(this.players);
+                break;
             }
 
             // Update playerIndex to the next player
