@@ -189,7 +189,7 @@ public class Game {
                 if(move){
                     if (checkStartPassed(1, currentPlayer))
                         out.showMessageByKey("PassedStartField");
-                    //TODO: Udfør feltets funktion
+                    handleField(currentPlayer, gb, cardBundle, players, out, currentPlayer.getCurrentField());
                 } else {
                     drawCard(currentPlayer, cardBundle, players, out, gb);
                 }
