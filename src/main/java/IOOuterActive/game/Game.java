@@ -31,7 +31,7 @@ public class Game {
 
         for (Die die : dices) {
 
-            for (int i = 0; i <= die.getFaceValue(); i++) {
+            for (int i = 1; i <= die.getFaceValue(); i++) {
 
                 if (endFieldIndex == 23) {
                     endFieldIndex = 0;
@@ -58,6 +58,7 @@ public class Game {
                 if (field.getOwner() != player) {
                     // Field is owned by another player. player needs to pay rent.
 
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
                     if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
                         player.addMoney(field.getPrice() * (-2));
                         field.getOwner().addMoney((field.getPrice() * 2));
@@ -70,6 +71,7 @@ public class Game {
 
             } else {
                 // Field is not currently owned. player has to buy it
+                out.showMessageByKey("FieldIsNotOwned");
                 player.addMoney( field.getPrice() * (-1) );
                 field.setOwner(player);
 

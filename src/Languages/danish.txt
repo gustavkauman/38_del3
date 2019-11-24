@@ -14,3 +14,7 @@ beginGameMessage
 Spillet starter nu!
 WaitingForShuffle
 Kast med terningerne ved at trykke "ENTER"!
+FieldIsAlreadyOwnedByAnotherPlayer
+Feltet er allerede ejet af en anden spiller, og du skal betale husleje.
+FieldIsNotOwned
+Felter ikke ejet af nogen spiller, og du køber derfor feltet.
