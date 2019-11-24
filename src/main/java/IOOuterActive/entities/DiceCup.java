@@ -1,10 +1,10 @@
 package IOOuterActive.entities;
 
-class DiceCup {
+public class DiceCup {
 
     private Die[] dices;
 
-    DiceCup(int numberOfDice, int numberOfFaces) {
+    public DiceCup(int numberOfDice, int numberOfFaces) {
 
         this.dices = new Die[numberOfDice];
 
@@ -13,17 +13,17 @@ class DiceCup {
         }
     }
 
-    void throwDice() {
+    public void throwDice() {
         for (Die die : dices) {
             die.roll();
         }
      }
 
-    Die[] getDices() {
+    public Die[] getDices() {
         return this.dices;
     }
 
-    int getSum() {
+    public int getSum() {
         int sum = 0;
         for (Die die: dices) {
             sum += die.getFaceValue();
