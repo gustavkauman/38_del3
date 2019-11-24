@@ -7,6 +7,7 @@ import IOOuterActive.game.Game;
 import gui_fields.*;
 import gui_main.GUI;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class GameController {
@@ -143,6 +144,7 @@ public class GameController {
                 guiFields[i] = new GUI_Street();
                 guiFields[i].setTitle(fields[i].getName());
                 guiFields[i].setSubText(String.valueOf(field.getPrice()));
+                guiFields[i].setBackGroundColor(field.getBoardColor());
 
             } else if (fields[i] instanceof ChanceField) {
 
@@ -152,7 +154,7 @@ public class GameController {
             } else if (fields[i] instanceof PrisonField) {
 
                 guiFields[i] = new GUI_Jail();
-                guiFields[i].setTitle("Prison");
+                guiFields[i].setSubText(fields[i].getName());
 
             } else {
 
