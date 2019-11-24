@@ -3,6 +3,9 @@ package IOOuterActive.game;
 import IOOuterActive.GUI.MatadorJuniorGUI;
 import IOOuterActive.entities.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
     /**
@@ -178,7 +181,11 @@ public class Game {
                 break;
             case "MoveOrCard":
                 boolean move = false;
-                //TODO: move = guiController getUserSelection ...
+                String selection = out.waitForUserSelection("Vælg om du vil flytte et felt frem eller trække et nyt chancekort", "Flyt 1 felt", "Træk nyt kort");
+
+                if (selection.equals("Flyt 1 felt"))
+                    move = true;
+
                 if(move){
                     if (checkStartPassed(1, currentPlayer))
                         out.showMessageByKey("PassedStartField");
@@ -343,19 +350,42 @@ public class Game {
      * @author Gustav Utke Kauman
      * @version 1.0
      */
-    public static Player getWinner(Player[] players) {
+    public static Player getWinner(Player[] players, GameBoard gb) {
 
-        Player currentWinningPlayer = new Player();
-        currentWinningPlayer.setMoney(0);
+        List<Player> finalists = new ArrayList<Player>();
+        int maxBalance = 0;
         for (Player player : players) {
 
-            if (player.getMoney() > currentWinningPlayer.getMoney()) {
-                currentWinningPlayer = player;
+            if (player.getMoney() > maxBalance) {
+                finalists.add(player);
             }
 
         }
 
-        return currentWinningPlayer;
+        if (finalists.size() == 1) {
+            return finalists.get(0);
+        } else {
+
+            int maxSum = 0;
+            for (Player player : finalists) {
+                PropertyField[] ownedFields = gb.getFieldsOwnedByPlayer(player);
+
+                int sum = 0;
+                for (PropertyField field : ownedFields) {
+                    sum += field.getPrice();
+                }
+
+                if (sum < maxSum) {
+                    finalists.remove(player);
+                } else {
+                    maxSum = sum;
+                }
+
+            }
+
+            return finalists.get(0);
+
+        }
 
     }
 

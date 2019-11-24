@@ -43,21 +43,19 @@ public class GameBoard {
         return fields;
     }
 
-    public Field[] getFieldsOwnedByPlayer(Player player) {
+    public PropertyField[] getFieldsOwnedByPlayer(Player player) {
 
-        List<Field> list = new ArrayList<Field>();
+        List<PropertyField> list = new ArrayList<PropertyField>();
 
         for (Field field : this.fields) {
 
-            if ( ((PropertyField) field).getOwner() == player) {
-
-                list.add(field);
-
+            if (field instanceof PropertyField && ((PropertyField) field).getOwner() == player) {
+                list.add((PropertyField) field);
             }
 
         }
 
-        Field[] out = new Field[list.size()];
+        PropertyField[] out = new PropertyField[list.size()];
         return list.toArray(out);
 
     }
@@ -86,30 +84,22 @@ public class GameBoard {
 
     public PropertyField getFieldByColor (int currentPlayerPos, String... inputColors) {
 
-        PropertyField ret = null;
         List<String> colors = Arrays.asList(inputColors);
 
-        if (colors.size() == 1) {
-            // There is only one color
-            while (true) {
+        while (true) {
 
-                int fieldIndex = currentPlayerPos;
+            int fieldIndex = currentPlayerPos;
 
-                try {
-                    PropertyField field = (PropertyField) this.fields[++fieldIndex];
+            try {
+                PropertyField field = (PropertyField) this.fields[++fieldIndex];
 
-                    if (colors.contains(field.getColor())) {
-                        ret = field;
-                    }
-
-                } catch (ClassCastException e) {
-                    ++fieldIndex;
+                if (colors.contains(field.getColor())) {
+                    return field;
                 }
 
+            } catch (ClassCastException e) {
+                ++fieldIndex;
             }
         }
-
-        return ret;
-
     }
 }
