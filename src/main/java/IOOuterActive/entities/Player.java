@@ -84,6 +84,22 @@ public class Player {
             account.addMoney(amount);
         }
     }
+
+    public void purchaseField(PropertyField field) {
+        this.addMoney( field.getPrice() * (-1) );
+        field.setOwner(this);
+    }
+
+    public void purchaseField(PropertyField field, int price) {
+        this.addMoney( price * (-1) );
+        field.setOwner(this);
+    }
+
+    public void payRent (PropertyField field, int multiplier) {
+        this.addMoney( field.getPrice() * (-1) * multiplier);
+        field.getOwner().addMoney(field.getPrice() * multiplier);
+    }
+
 }
 
 

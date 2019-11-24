@@ -20,3 +20,9 @@ FieldIsNotOwned
 Felter ikke ejet af nogen spiller, og du køber derfor feltet.
 PassedStartField
 Du passerede START og modtager $2.
+PlayerHasPlayerSpecificCard
+Du har fået et chancekort fra en medspiller, og skal først udføre dette.
+PlayerOwnsOtherFieldInSameColor
+Spilleren, der ejer dette felt, ejer også det andet felt af samme farve, og du skal derfor betale dobbelt husleje.
+LandedOnGoToJail
+Du landede på "Gå i Fængsel" og ryger derfor i spjældet!

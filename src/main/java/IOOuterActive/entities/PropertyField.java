@@ -1,5 +1,7 @@
 package IOOuterActive.entities;
 
+import java.awt.Color;
+
 public class PropertyField extends Field {
 
     int price;
@@ -25,6 +27,31 @@ public class PropertyField extends Field {
     }
 
     public String getColor() {
-        return color;
+        return this.color;
+    }
+
+    public Color getBoardColor() {
+
+        switch (this.color) {
+            case "brown":
+                return new Color(137,104,74);
+            case "lightblue":
+                return new Color(103,153,206);
+            case "pink":
+                return Color.PINK;
+            case "yellow":
+                return Color.YELLOW;
+            case "red":
+                return Color.RED;
+            case "orange":
+                return Color.ORANGE;
+            case "green":
+                return Color.GREEN;
+            case "blue":
+                return Color.BLUE;
+            default:
+                return Color.GRAY;
+        }
+
     }
 }

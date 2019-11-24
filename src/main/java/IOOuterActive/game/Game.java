@@ -25,7 +25,33 @@ public class Game {
 
         }
 
-        // TODO PLayer specific cards
+        if (player.isPlayerSpecificCard()) {
+
+            out.showMessageByKey("PlayerHasPlayerSpecificCard");
+            while (true) {
+
+                int currentFieldIndex = player.getCurrentField();
+
+                try {
+
+                    PropertyField field = (PropertyField) gb.getFields()[++currentFieldIndex];
+                    if (field.getOwner() == null) {
+
+                        field.setOwner(player);
+                        player.setCurrentField(currentFieldIndex);
+                        break;
+
+                    }
+
+                } catch (ClassCastException e) {
+                    currentFieldIndex++;
+                }
+
+            }
+
+            player.setPlayerSpecificCard(false);
+
+        }
 
         // Begin player move
         int currentFieldIndex = player.getCurrentField();
@@ -52,6 +78,15 @@ public class Game {
         out.updateGUIGameBoard(players);
         // End player move
 
+        handleField(player, gb, cardBundle, players, out, endFieldIndex);
+
+        // Check if player has gone "fallit"
+        if (player.getMoney() < 0)
+            player.setFallit(true);
+
+    }
+
+    private static void handleField(Player player, GameBoard gb, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out, int endFieldIndex) {
         if ( gb.getFields()[endFieldIndex] instanceof PropertyField) {
             PropertyField field = (PropertyField) gb.getFields()[endFieldIndex];
 
@@ -63,11 +98,10 @@ public class Game {
 
                     out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
                     if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
-                        player.addMoney(field.getPrice() * (-2));
-                        field.getOwner().addMoney((field.getPrice() * 2));
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        player.payRent(field, 2);
                     } else {
-                        player.addMoney( field.getPrice() * (-1) );
-                        field.getOwner().addMoney(field.getPrice());
+                        player.payRent(field, 1);
                     }
 
                 }
@@ -75,63 +109,71 @@ public class Game {
             } else {
                 // Field is not currently owned. player has to buy it
                 out.showMessageByKey("FieldIsNotOwned");
-                player.addMoney( field.getPrice() * (-1) );
-                field.setOwner(player);
-
+                player.purchaseField(field);
             }
 
         } else if (gb.getFields()[endFieldIndex] instanceof ChanceField) {
 
-            drawCard(player, cardBundle, players, out);
+            drawCard(player, cardBundle, players, out, gb);
 
         } else if ( endFieldIndex == 18) {
             // Player has landed on "Go to jail"-field
+            out.showMessageByKey("LandedOnGoToJail");
             player.setCurrentField(6);
             player.setJailed(true);
         }
-
-        // Check if player has gone "fallit"
-        if (player.getMoney() < 0)
-            player.setFallit(true);
-
     }
 
-    private static void drawCard(Player currentPlayer, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out){
+    private static void drawCard(Player currentPlayer, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out, GameBoard gb){
         Card drawnCard = cardBundle.getCard();
 
-        out.showMessage(drawnCard.getText());
+        out.showChanceCard(drawnCard.getText());
 
         switch (drawnCard.getName()){
+
             case "GiveToCar":
-                //Insert logic here
                 players[0].setPlayerSpecificCard(true);
-                drawCard(currentPlayer, cardBundle, players, out);
+                drawCard(currentPlayer, cardBundle, players, out, gb);
                 break;
             case "GiveToShip":
                 players[1].setPlayerSpecificCard(true);
-                drawCard(currentPlayer, cardBundle, players, out);
+                drawCard(currentPlayer, cardBundle, players, out, gb);
                 break;
             case "GiveToCat":
                 if(players.length > 2)
                     players[2].setPlayerSpecificCard(true);
-                drawCard(currentPlayer, cardBundle, players, out);
+                drawCard(currentPlayer, cardBundle, players, out, gb);
                 break;
             case "GiveToDog":
                 if(players.length > 3)
                     players[3].setPlayerSpecificCard(true);
-                drawCard(currentPlayer, cardBundle, players, out);
+                drawCard(currentPlayer, cardBundle, players, out, gb);
                 break;
             case "GoToStart":
                 if (checkStartPassed(24 - currentPlayer.getCurrentField(), currentPlayer))
                     out.showMessageByKey("PassedStartField");
                 break;
             case "Move5":
-                int chosenNumberOfMoves;
-                //TODO: int chosenNumberOfMoves = guiController ...
-                //checkStartPassed(chosenNumberOfMoves);
-                //TODO: Udfør feltets funktion
+                int chosenNumberOfMoves = out.getUserInteger("Vælg et antal felter at rykke frem", 1,5);
+                checkStartPassed(chosenNumberOfMoves, currentPlayer);
+                out.updateGUIGameBoard(players);
+                handleField(currentPlayer, gb, cardBundle, players, out, currentPlayer.getCurrentField());
                 break;
             case "OrangeFree":
+
+                PropertyField field = gb.getFieldByColor(currentPlayer.getCurrentField(), "orange");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
 
                 break;
             case "MoveOrCard":
@@ -142,7 +184,7 @@ public class Game {
                         out.showMessageByKey("PassedStartField");
                     //TODO: Udfør feltets funktion
                 } else {
-                    drawCard(currentPlayer, cardBundle, players, out);
+                    drawCard(currentPlayer, cardBundle, players, out, gb);
                 }
                 break;
             case "Overeating":
@@ -150,8 +192,36 @@ public class Game {
                 break;
             case "OrangeOrGreenFree":
 
+                field = gb.getFieldByColor(currentPlayer.getCurrentField(), "orange", "green");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
+
                 break;
             case "LightblueFree":
+
+                field = gb.getFieldByColor(currentPlayer.getCurrentField(), "lightblue");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
 
                 break;
             case "GetOutOfJail":
@@ -160,7 +230,7 @@ public class Game {
             case "MoveToStrand":
                 if (checkStartPassed(23 - currentPlayer.getCurrentField(), currentPlayer))
                     out.showMessageByKey("PassedStartField");
-                //TODO: Udfør feltets funktion
+                handleField(currentPlayer, gb, cardBundle, players, out, currentPlayer.getCurrentField());
                 break;
             case "Birthday":
                 for(Player player : players){
@@ -172,11 +242,39 @@ public class Game {
                 break;
             case "PinkOrDarkblueFree":
 
+                field = gb.getFieldByColor(currentPlayer.getCurrentField(), "pink", "blue");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
+
                 break;
             case "Homework":
                 currentPlayer.addMoney(2);
                 break;
             case "RedFree":
+
+                field = gb.getFieldByColor(currentPlayer.getCurrentField(), "red");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
 
                 break;
             case "Skatepark":
@@ -188,12 +286,41 @@ public class Game {
                 }
                 if (checkStartPassed(movedFields, currentPlayer))
                    out.showMessageByKey("PassedStartField");
-                //TODO: Udfør feltets funktion.
+                handleField(currentPlayer, gb, cardBundle, players, out, currentPlayer.getCurrentField());
                 break;
             case "LightblueOrRedFree":
 
+                field = gb.getFieldByColor(currentPlayer.getCurrentField(), "lightblue", "red");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
+
                 break;
             case "BrownOrYellowFree":
+
+                field = gb.getFieldByColor(currentPlayer.getCurrentField(), "brown", "yellow");
+
+                if (field.getOwner() == null) {
+                    currentPlayer.purchaseField(field, 0);
+                } else if (field.getOwner() != currentPlayer) {
+                    out.showMessageByKey("FieldIsAlreadyOwnedByAnotherPlayer");
+                    if (gb.fieldsAreOwnedBySamePlayer(gb.getFieldsByColor(field.getColor()))) {
+                        out.showMessageByKey("PlayerOwnsOtherFieldInSameColor");
+                        currentPlayer.payRent(field, 2);
+                    } else {
+                        currentPlayer.payRent(field, 1);
+                    }
+                }
+
                 break;
         }
     }
@@ -208,7 +335,6 @@ public class Game {
             return true;
         }
     }
-
 
     /**
      * Loops through all players and returns the winner with the highest balance

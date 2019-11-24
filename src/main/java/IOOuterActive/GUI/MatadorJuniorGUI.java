@@ -91,5 +91,8 @@ public class MatadorJuniorGUI {
         gui.getUserButtonPressed("","ENTER");
     }
 
+    public void showChanceCard(String text) {
+        gui.displayChanceCard(text);
+    }
 
 }

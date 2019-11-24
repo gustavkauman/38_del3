@@ -1,6 +1,7 @@
 package IOOuterActive.entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameBoard {
@@ -81,5 +82,34 @@ public class GameBoard {
 
     public boolean fieldsAreOwnedBySamePlayer (Field[] fields) {
         return ( ((PropertyField) fields[0]).getOwner() == ((PropertyField) fields[1]).getOwner());
+    }
+
+    public PropertyField getFieldByColor (int currentPlayerPos, String... inputColors) {
+
+        PropertyField ret = null;
+        List<String> colors = Arrays.asList(inputColors);
+
+        if (colors.size() == 1) {
+            // There is only one color
+            while (true) {
+
+                int fieldIndex = currentPlayerPos;
+
+                try {
+                    PropertyField field = (PropertyField) this.fields[++fieldIndex];
+
+                    if (colors.contains(field.getColor())) {
+                        ret = field;
+                    }
+
+                } catch (ClassCastException e) {
+                    ++fieldIndex;
+                }
+
+            }
+        }
+
+        return ret;
+
     }
 }
