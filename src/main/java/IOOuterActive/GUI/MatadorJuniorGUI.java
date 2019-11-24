@@ -91,6 +91,10 @@ public class MatadorJuniorGUI {
         gui.getUserButtonPressed("","ENTER");
     }
 
+    public String waitForUserSelection(String txt, String... options) {
+        return gui.getUserSelection(txt, options);
+    }
+
     public void showChanceCard(String text) {
         gui.displayChanceCard(text);
     }
