@@ -67,8 +67,12 @@ public class GameBoard {
         Field[] out = new Field[2];
 
         for (Field field: this.fields) {
-            if (((PropertyField) field).getColor().equals(color)) {
-                list.add(field);
+            try {
+                PropertyField propertyField = (PropertyField) field;
+                if (propertyField.getColor().equals(color))
+                    list.add(propertyField);
+            } catch (ClassCastException e) {
+
             }
         }
 
