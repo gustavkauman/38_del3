@@ -12,3 +12,5 @@ AntalSpillere
 Indtast det ønskede antal spillere.
 beginGameMessage
 Spillet starter nu!
+WaitingForShuffle
+Kast med terningerne ved at trykke "ENTER"!
