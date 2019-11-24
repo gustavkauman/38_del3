@@ -25,6 +25,8 @@ public class Game {
 
         }
 
+        // TODO PLayer specific cards
+
         // Begin player move
         int currentFieldIndex = player.getCurrentField();
         int endFieldIndex = currentFieldIndex;
@@ -36,6 +38,7 @@ public class Game {
                 if (endFieldIndex == 23) {
                     endFieldIndex = 0;
                     player.addMoney(2);
+                    out.showMessageByKey("PassedStartField");
                 } else {
                     endFieldIndex++;
                 }
@@ -119,7 +122,8 @@ public class Game {
                 drawCard(currentPlayer, cardBundle, players, out);
                 break;
             case "GoToStart":
-                checkStartPassed(24 - currentPlayer.getCurrentField(), currentPlayer);
+                if (checkStartPassed(24 - currentPlayer.getCurrentField(), currentPlayer))
+                    out.showMessageByKey("PassedStartField");
                 break;
             case "Move5":
                 int chosenNumberOfMoves;
@@ -134,7 +138,8 @@ public class Game {
                 boolean move = false;
                 //TODO: move = guiController getUserSelection ...
                 if(move){
-                    checkStartPassed(1, currentPlayer);
+                    if (checkStartPassed(1, currentPlayer))
+                        out.showMessageByKey("PassedStartField");
                     //TODO: Udfør feltets funktion
                 } else {
                     drawCard(currentPlayer, cardBundle, players, out);
@@ -153,7 +158,8 @@ public class Game {
                 currentPlayer.setJailCards(currentPlayer.getJailCards() + 1);
                 break;
             case "MoveToStrand":
-                checkStartPassed(23 - currentPlayer.getCurrentField(), currentPlayer);
+                if (checkStartPassed(23 - currentPlayer.getCurrentField(), currentPlayer))
+                    out.showMessageByKey("PassedStartField");
                 //TODO: Udfør feltets funktion
                 break;
             case "Birthday":
@@ -180,7 +186,8 @@ public class Game {
                 } else {
                     movedFields = 24 - (currentPlayer.getCurrentField() - 10);
                 }
-                checkStartPassed(movedFields, currentPlayer);
+                if (checkStartPassed(movedFields, currentPlayer))
+                   out.showMessageByKey("PassedStartField");
                 //TODO: Udfør feltets funktion.
                 break;
             case "LightblueOrRedFree":
@@ -191,15 +198,14 @@ public class Game {
         }
     }
 
-    private static void checkStartPassed(int fieldsMoved, Player currentPlayer) {
+    private static boolean checkStartPassed(int fieldsMoved, Player currentPlayer) {
         if(currentPlayer.getCurrentField() + fieldsMoved < 24){
             currentPlayer.setCurrentField(currentPlayer.getCurrentField() + fieldsMoved);
-            //TODO: Update GUI
+            return false;
         } else {
-            System.out.println("Du passerede START og modtager $2.");
             currentPlayer.addMoney(2);
             currentPlayer.setCurrentField(currentPlayer.getCurrentField() + fieldsMoved - 24);
-            //TODO: Update GUI
+            return true;
         }
     }
 
