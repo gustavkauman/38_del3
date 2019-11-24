@@ -31,9 +31,9 @@ public class Game {
         if (player.isPlayerSpecificCard()) {
 
             out.showMessageByKey("PlayerHasPlayerSpecificCard");
-            while (true) {
+            int currentFieldIndex = player.getCurrentField();
 
-                int currentFieldIndex = player.getCurrentField();
+            while (true) {
 
                 try {
 
