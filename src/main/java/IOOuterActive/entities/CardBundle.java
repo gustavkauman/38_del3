@@ -7,15 +7,15 @@ public class CardBundle {
     private Card[] cards = new Card[20];
 
     public void createCards(){
-        cards[0] = new Card("GiveToCar", "Giv dette kort til BILEN, og tag et chancekort mere. \n BIL: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
-                "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!"); //TODO: Prob ændre bil, skib osv. til spiller 1, spiller 2 ...
+        cards[0] = new Card("GiveToCar", "Giv dette kort til Spiller 1, og tag et chancekort mere. \n Spiller 1: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
+                "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!");
 
         cards[1] = new Card("GoToStart", "Ryk frem til START. Modtag $2.");
         cards[2] = new Card("Move5", "Ryk op til 5 felter frem.");
         cards[3] = new Card("OrangeFree", "Ryk frem til et orange felt. \n Hvis det er ledigt, får du det gratis! Ellers skal du betale leje til ejeren.");
         cards[4] = new Card("MoveOrCard", "Ryk 1 felt frem, eller tag et chancekort mere.");
 
-        cards[5] = new Card("GiveToShip", "Giv dette kort til SKIBET, og tag et chancekort mere. \n SKIB: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
+        cards[5] = new Card("GiveToShip", "Giv dette kort til Spiller 2, og tag et chancekort mere. \n Spiller 2: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
                 "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!");
 
         cards[6] = new Card("Overeating", "Du har spist for meget slik. Betal $2 til banken.");
@@ -24,10 +24,10 @@ public class CardBundle {
         cards[9] = new Card("GetOutOfJail", "Du løslades uden omkostninger. Behold dette kort, indtil du får brug for det.");
         cards[10] = new Card("MoveToStrand", "Ryk frem til Strandpromenaden.");
 
-        cards[11] = new Card("GiveToCat", "Giv dette kort til KATTEN, og tag et chancekort mere. \n KAT: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
+        cards[11] = new Card("GiveToCat", "Giv dette kort til Spiller 3, og tag et chancekort mere. \n Spiller 3: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
                 "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!");
 
-        cards[12] = new Card("GiveToDog", "Giv dette kort til HUNDEN, og tag et chancekort mere. \n HUND: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
+        cards[12] = new Card("GiveToDog", "Giv dette kort til Spiller 4, og tag et chancekort mere. \n Spiller 4: På din næste tur skal du drøne frem til et hvilket som helst ledigt felt og købe det. " +
                 "\n Hvis der ikke er nogen ledige felter, skal du købe et fra en anden spiller!");
 
         cards[13] = new Card("Birthday", "Det er din fødselsdag! Alle giver dig $1. Tillykke med fødselsdagen!");
