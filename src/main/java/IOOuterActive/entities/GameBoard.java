@@ -85,10 +85,9 @@ public class GameBoard {
     public PropertyField getFieldByColor (int currentPlayerPos, String... inputColors) {
 
         List<String> colors = Arrays.asList(inputColors);
+        int fieldIndex = currentPlayerPos;
 
         while (true) {
-
-            int fieldIndex = currentPlayerPos;
 
             try {
                 PropertyField field = (PropertyField) this.fields[++fieldIndex];
@@ -99,6 +98,9 @@ public class GameBoard {
 
             } catch (ClassCastException e) {
                 ++fieldIndex;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                // The edge of the fields array was hit. Resetting index to 0
+                fieldIndex = 0;
             }
         }
     }
