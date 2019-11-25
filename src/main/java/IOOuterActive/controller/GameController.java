@@ -57,7 +57,7 @@ public class GameController {
             // Check if a player is "fallit", so the game needs to end
             if (player.isFallit()) {
                 Player winner = Game.getWinner(this.players, this.gb);
-                out.showMessage(String.valueOf(System.out.printf(lang.getOutputMessage("Winner"), winner.getName())));
+                out.showMessage(String.format(lang.getOutputMessage("Winner"), winner.getName()));
                 break;
             }
 
