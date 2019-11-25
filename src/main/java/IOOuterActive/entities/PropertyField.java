@@ -8,8 +8,8 @@ public class PropertyField extends Field {
     Player owner = null;
     String color;
 
-    public PropertyField(String name, int ID, String color, int price) {
-        super(name, ID);
+    public PropertyField(String name, int id, String color, int price) {
+        super(name, id);
         this.color = color;
         this.price = price;
     }
@@ -28,6 +28,10 @@ public class PropertyField extends Field {
 
     public String getColor() {
         return this.color;
+    }
+
+    public int getId() {
+        return super.getId();
     }
 
     public Color getBoardColor() {

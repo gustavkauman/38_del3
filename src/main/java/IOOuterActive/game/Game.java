@@ -95,6 +95,8 @@ public class Game {
 
         }
 
+        endFieldIndex = 3;
+
         // Move player to field
         player.setCurrentField(endFieldIndex);
         out.updateGUIGameBoard(players);
@@ -197,6 +199,8 @@ public class Game {
                     }
                 }
 
+                currentPlayer.setCurrentField(field.getId());
+
                 break;
             case "MoveOrCard":
                 boolean move = false;
@@ -232,6 +236,8 @@ public class Game {
                     }
                 }
 
+                currentPlayer.setCurrentField(field.getId());
+
                 break;
             case "LightblueFree":
 
@@ -248,6 +254,8 @@ public class Game {
                         currentPlayer.payRent(field, 1);
                     }
                 }
+
+                currentPlayer.setCurrentField(field.getId());
 
                 break;
             case "GetOutOfJail":
@@ -282,6 +290,8 @@ public class Game {
                     }
                 }
 
+                currentPlayer.setCurrentField(field.getId());
+
                 break;
             case "Homework":
                 currentPlayer.addMoney(2);
@@ -301,6 +311,8 @@ public class Game {
                         currentPlayer.payRent(field, 1);
                     }
                 }
+
+                currentPlayer.setCurrentField(field.getId());
 
                 break;
             case "Skatepark":
@@ -330,6 +342,8 @@ public class Game {
                     }
                 }
 
+                currentPlayer.setCurrentField(field.getId());
+
                 break;
             case "BrownOrYellowFree":
 
@@ -346,6 +360,8 @@ public class Game {
                         currentPlayer.payRent(field, 1);
                     }
                 }
+
+                currentPlayer.setCurrentField(field.getId());
 
                 break;
         }

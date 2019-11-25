@@ -20,4 +20,7 @@ public class Field {
         return name;
     }
 
+    protected int getId() {
+        return this.id;
+    }
 }
