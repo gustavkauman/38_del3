@@ -6,8 +6,6 @@ import IOOuterActive.entities.*;
 import IOOuterActive.game.Game;
 import gui_fields.*;
 import gui_main.GUI;
-
-import java.awt.*;
 import java.io.IOException;
 
 public class GameController {
@@ -29,18 +27,29 @@ public class GameController {
         out = new MatadorJuniorGUI(gui, lang);
     }
 
+    /**
+     * Plays the game and handles the appropriate steps in a round.
+     * @author Gustav Utke Kauman
+     */
     public void playGame() {
 
+        // Create the players and update the GUI board accordingly.
         createPlayers();
         out.updateGUIGameBoard(this.players);
+
+        // Show begin game message
         out.beginGame();
 
+        // Set first player
         int playerIndex = 0;
 
+        // Loop until a player has gone "fallit"
         while (true) {
 
+            // Get currnet player
             Player player = players[playerIndex];
 
+            // Show messages related to getting the user to shuffle the dice cup
             out.waitingForShuffle();
             out.waitForUserPress();
 
@@ -66,11 +75,17 @@ public class GameController {
 
         }
 
+        // Show the end game message and close the application
         out.showMessageByKey("EndGame");
         System.exit(0);
 
     }
 
+    /**
+     * Asks questions related to generating the players, generates them and sorts them by age.
+     * Then gives each player the correct amount of money corresponding to the amount of players in the game.
+     * @author Tim Jakobsen, Gustav Utke Kauman
+     */
     private void createPlayers() {
 
         out.showMessageByKey("AntalSpillere");
@@ -124,8 +139,7 @@ public class GameController {
     }
 
     /**
-     * Method to create the GUI board with the correct fields
-     *
+     * Creates the GUI board with the correct fields that is currently in the game.
      * @author Gustav Utke Kauman
      * @version 1.0
      * @return GUI
@@ -135,6 +149,7 @@ public class GameController {
         Field[] fields = gb.getFields();
         GUI_Field[] guiFields = new GUI_Field[fields.length];
 
+        // Loop through all fields and create them as GUI fields that can be shown in the GUI.
         for (int i = 0; i < fields.length; i++) {
 
             if (i == 0) {
@@ -174,6 +189,12 @@ public class GameController {
 
     }
 
+    /**
+     * Calculate and return the next player that has their round
+     * @param playerIndex
+     * @return index of next player.
+     * @author Gustav Utke Kauman, with inspiration by code created by Mads Nyborg in lectures in DTU course 02312/02314 (Fall 2019)
+     */
     private int nextPlayer(int playerIndex) {
         return (++playerIndex % this.players.length);
     }
