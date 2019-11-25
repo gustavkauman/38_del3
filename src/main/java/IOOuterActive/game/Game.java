@@ -9,7 +9,7 @@ import java.util.List;
 public class Game {
 
     /**
-     *
+     * Handles what has to happen to the player when rolling given values with the Dices.
      * @param dices
      * @param player
      * @param gb
@@ -17,7 +17,7 @@ public class Game {
      */
     public static void gameLogic(Die[] dices, Player player, GameBoard gb, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out) {
 
-        // Check if player is in jail
+        // Check if player is in jail and if so do the associated actions
         if (player.getCurrentField() == 6 && player.isJailed()) {
 
             if (player.getJailCards() > 0) {
@@ -28,6 +28,7 @@ public class Game {
 
         }
 
+        // Check if the player has a chance card that has to be fulfilled first and then to the associated actions
         if (player.isPlayerSpecificCard()) {
 
             out.showMessageByKey("PlayerHasPlayerSpecificCard");
@@ -95,13 +96,12 @@ public class Game {
 
         }
 
-        endFieldIndex = 3;
-
         // Move player to field
         player.setCurrentField(endFieldIndex);
         out.updateGUIGameBoard(players);
         // End player move
 
+        // Handle what happens when the player lands a given field
         handleField(player, gb, cardBundle, players, out, endFieldIndex);
 
         // Check if player has gone "fallit"
@@ -110,6 +110,16 @@ public class Game {
 
     }
 
+    /**
+     * Handle the actions related with landing on a given field.
+     * @param player
+     * @param gb
+     * @param cardBundle
+     * @param players
+     * @param out
+     * @param endFieldIndex
+     * @author Gustav Utke Kauman
+     */
     private static void handleField(Player player, GameBoard gb, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out, int endFieldIndex) {
         if ( gb.getFields()[endFieldIndex] instanceof PropertyField) {
             PropertyField field = (PropertyField) gb.getFields()[endFieldIndex];
@@ -148,6 +158,15 @@ public class Game {
         }
     }
 
+    /**
+     * Method to draw a chance card from the card bundle and then do the associated action.
+     * @param currentPlayer
+     * @param cardBundle
+     * @param players
+     * @param out
+     * @param gb
+     * @auther Tim Jakobsen, Gustav Utke Kauman
+     */
     private static void drawCard(Player currentPlayer, CardBundle cardBundle, Player[] players, MatadorJuniorGUI out, GameBoard gb){
         Card drawnCard = cardBundle.getCard();
 
@@ -367,6 +386,13 @@ public class Game {
         }
     }
 
+    /**
+     * Checks if the player has passed the start-field if moven a given no of fields.
+     * @param fieldsMoved
+     * @param currentPlayer
+     * @return boolean
+     * @author Tim Jakobsen
+     */
     private static boolean checkStartPassed(int fieldsMoved, Player currentPlayer) {
         if(currentPlayer.getCurrentField() + fieldsMoved < 24){
             currentPlayer.setCurrentField(currentPlayer.getCurrentField() + fieldsMoved);
@@ -379,11 +405,12 @@ public class Game {
     }
 
     /**
-     * Loops through all players and returns the winner with the highest balance
-     * @param players
+     * Loops through all players and returns the winner with the highest balance or the one with most property value if more than 1 player has the highest balance.
+     * @param players : Player[]
+     * @param gb : GameBoard
      * @return Player
      * @author Gustav Utke Kauman
-     * @version 1.0
+     * @version 1.1
      */
     public static Player getWinner(Player[] players, GameBoard gb) {
 
@@ -392,6 +419,9 @@ public class Game {
         for (Player player : players) {
 
             if (player.getMoney() > maxBalance) {
+                finalists.clear();
+                finalists.add(player);
+            } else if (player.getMoney() == maxBalance) {
                 finalists.add(player);
             }
 
