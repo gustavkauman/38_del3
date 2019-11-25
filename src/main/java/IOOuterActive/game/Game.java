@@ -32,22 +32,41 @@ public class Game {
 
             out.showMessageByKey("PlayerHasPlayerSpecificCard");
             int currentFieldIndex = player.getCurrentField();
+            int origPos = currentFieldIndex;
+            boolean forceBuy = false;
 
             while (true) {
 
+                currentFieldIndex++;
+
+                // Player reached last field. Resetting index
+                if (currentFieldIndex == 24)
+                    currentFieldIndex = 0;
+
                 try {
 
-                    PropertyField field = (PropertyField) gb.getFields()[++currentFieldIndex];
-                    if (field.getOwner() == null) {
+                    if (currentFieldIndex == origPos) {
+                        currentFieldIndex = origPos + 1;
+                        forceBuy = true;
+                    }
 
-                        field.setOwner(player);
+                    PropertyField field = (PropertyField) gb.getFields()[currentFieldIndex];
+                    if (field.getOwner() == null && ! forceBuy) {
+
+                        player.purchaseField(field);
                         player.setCurrentField(currentFieldIndex);
+                        break;
+
+                    } else if (forceBuy) {
+
+                        field.getOwner().addMoney(field.getPrice());
+                        player.purchaseField(field);
                         break;
 
                     }
 
                 } catch (ClassCastException e) {
-                    currentFieldIndex++;
+
                 }
 
             }
