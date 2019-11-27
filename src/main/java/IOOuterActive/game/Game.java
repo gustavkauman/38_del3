@@ -386,6 +386,7 @@ public class Game {
         }
     }
 
+
     /**
      * Checks if the player has passed the start-field if moven a given no of fields.
      * @param fieldsMoved
@@ -393,7 +394,7 @@ public class Game {
      * @return boolean
      * @author Tim Jakobsen
      */
-    private static boolean checkStartPassed(int fieldsMoved, Player currentPlayer) {
+    public static boolean checkStartPassed(int fieldsMoved, Player currentPlayer) {
         if(currentPlayer.getCurrentField() + fieldsMoved < 24){
             currentPlayer.setCurrentField(currentPlayer.getCurrentField() + fieldsMoved);
             return false;
