@@ -7,6 +7,8 @@ import IOOuterActive.game.Game;
 import gui_fields.*;
 import gui_main.GUI;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class GameController {
 
@@ -104,19 +106,12 @@ public class GameController {
             players[i].setAge(age);
         }
 
-        Player[] sortedPlayers = new Player[players.length];
-
-        for(int i = 0; i < players.length; i++){
-            int pos = 0;
-            for(int j = 0; j < players.length; j++){
-                if(players[i].getAge() > players[j].getAge()){
-                    pos++;
-                }
+        Arrays.sort(players, new Comparator<Player>() {
+            @Override
+            public int compare(Player o1, Player o2) {
+                return o1.getAge() - o2.getAge();
             }
-
-            sortedPlayers[pos] = players[i];
-
-        }
+        });
 
         for (Player player : players) {
             switch (players.length) {
@@ -133,8 +128,6 @@ public class GameController {
         }
 
         out.createGUICars(this.players);
-
-        players = sortedPlayers;
 
     }
 
