@@ -41,6 +41,9 @@ public class CardBundle {
         shuffleCards();
     }
 
+    /**
+     * This code randomises the index number for each chance-card.
+     */
     private void shuffleCards() {
         Random rand = new Random();
 
@@ -52,6 +55,10 @@ public class CardBundle {
         }
     }
 
+    /**
+     * Gets a specific card.
+     * @return Returns speific card
+     */
     public Card getCard(){
         Card card = cards[currentCardPos%20];
         currentCardPos++;

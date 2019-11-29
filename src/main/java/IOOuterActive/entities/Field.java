@@ -16,10 +16,18 @@ public class Field {
         this.id = id;
     }
 
+    /**
+     * Gets the field name
+     * @return Returns field name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the Field ID
+     * @return ID
+     */
     protected int getId() {
         return this.id;
     }
