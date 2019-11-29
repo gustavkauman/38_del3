@@ -9,13 +9,15 @@ public class Die {
     }
 
     /**
-     * @return Returns random value between 1 and x, where x is amount of sides on the die.
+     * Returns random value between 1 and x, where x is amount of sides on the die.
+     * @return Returns random value.
      */
     int roll() {
         return this.faceValue = (int) (Math.random() * faces) + 1;
     }
 
     /**
+     * Gets the facevalue
      * @return Returns facevalue.
      */
     public int getFaceValue() {

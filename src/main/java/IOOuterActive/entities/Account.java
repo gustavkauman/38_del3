@@ -5,6 +5,7 @@ class Account {
     private int money;
 
     /**
+     * Gets the value of money
      * @return Returns the current balance of money
      */
     int getMoney() {
@@ -15,7 +16,6 @@ class Account {
      * This code takes an integer and set the money to that.
      * @param amount in
      */
-
     void setMoney(int amount) {
         this.money = amount;
     }

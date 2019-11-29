@@ -40,6 +40,7 @@ public class GameBoard {
     }
 
     /**
+     * Gets a field
      * @return Returns field
      */
     public Field[] getFields() {

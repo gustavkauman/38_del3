@@ -24,6 +24,7 @@ public class DiceCup {
      }
 
     /**
+     * Gets the dices
      * @return Returns the dices
      */
 
@@ -32,6 +33,7 @@ public class DiceCup {
     }
 
     /**
+     * Gets the sum of the dices
      * @return Returns the sum of the dices.
      */
 

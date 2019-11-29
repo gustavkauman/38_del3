@@ -17,6 +17,7 @@ public class Field {
     }
 
     /**
+     * Gets the field name
      * @return Returns field name
      */
     public String getName() {
@@ -24,7 +25,8 @@ public class Field {
     }
 
     /**
-     * @return ID name
+     * Gets the Field ID
+     * @return ID
      */
     protected int getId() {
         return this.id;
