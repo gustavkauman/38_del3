@@ -1,4 +1,4 @@
-package IOOuterActive.controller;
+package IOOuterActive.game;
 
 import IOOuterActive.entities.Player;
 import IOOuterActive.game.Game;
