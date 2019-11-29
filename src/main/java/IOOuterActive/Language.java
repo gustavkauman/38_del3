@@ -10,7 +10,6 @@ public class Language {
 
     public void readFile() throws IOException {
         String src = "danish.txt";
-        File langFile = new File(src);
         InputStream fis = Main.class.getClassLoader().getResourceAsStream(src);
         Scanner read = new Scanner(fis, "UTF-8");
         read.useDelimiter("\n");
@@ -20,10 +19,6 @@ public class Language {
         }
 
         fis.close();
-    }
-
-    public Map<String, String> getOutput() {
-        return output;
     }
 
     public String getOutputMessage(String key) {
