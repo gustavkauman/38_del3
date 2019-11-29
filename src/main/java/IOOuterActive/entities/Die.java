@@ -8,8 +8,8 @@ public class Die {
         this.faces = x;
     }
 
-    void roll() {
-        this.faceValue = (int) (Math.random() * faces) + 1;
+    int roll() {
+        return this.faceValue = (int) (Math.random() * faces) + 1;
     }
 
     public int getFaceValue() {
