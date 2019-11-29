@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Testing the R11. The test consists of two parts. The first part tests who the winner
+ * Testing the R11. The test consists of two parts. The first part tests who the winner is
  * in the case that a player has more money than the rest of the players.
  *
  * The second part test who the player is when two players have the same amount of money
@@ -43,7 +43,6 @@ public class R11 {
     /**
      * Second part
      */
-
     @Test
     public void testerR11_2 () {
         Player p1 = new Player();
