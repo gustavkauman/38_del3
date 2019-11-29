@@ -9,10 +9,10 @@ public class Language {
     private Map<String, String> output = new HashMap<>();
 
     public void readFile() throws IOException {
-        String src = "src/Languages/danish.txt";
+        String src = "danish.txt";
         File langFile = new File(src);
-        InputStream fis = new FileInputStream(langFile);
-        Scanner read = new Scanner(fis);
+        InputStream fis = Main.class.getClassLoader().getResourceAsStream(src);
+        Scanner read = new Scanner(fis, "UTF-8");
         read.useDelimiter("\n");
 
         while (read.hasNext()){
