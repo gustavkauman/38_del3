@@ -30,7 +30,6 @@ public class PlayerTest {
     /**
      * Testing the method that disqualifies a player if his/her money is 0 or below
      */
-
     @Test
     public void isFallit() {
         Player p = new Player();
