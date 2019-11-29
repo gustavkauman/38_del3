@@ -3,6 +3,7 @@ package IOOuterActive.game;
 import IOOuterActive.entities.Field;
 import IOOuterActive.entities.GameBoard;
 import IOOuterActive.entities.Player;
+import IOOuterActive.entities.PropertyField;
 import org.junit.jupiter.api.Test;
 import org.junit.Assert;
 
@@ -15,7 +16,8 @@ public class TC01 {
 
 
     /**
-     * Tests whether a player is able to move around all the 23 fields of the gameboard
+     * Tests whether a player is able to move around all the 23 fields of the gameboard and if the current field
+     * corresponds to the actual field on the gameboard
      */
     @Test
     public void TestMoveBoard(){
@@ -27,8 +29,13 @@ public class TC01 {
 
             player.setCurrentField(i);
             int actual = player.getCurrentField();
-            Assert.assertEquals(i,actual);
-            //todo -- Ved ikke hvordan man bruger arrayList. Vil gerne tilgå felterne, så jeg kan tjekke om spilleren lander på felterne
+            try {
+                PropertyField d = (PropertyField) board.getFields()[i];
+                Assert.assertEquals(i, d.getId());
+            } catch (ClassCastException e) {
+
+            }
+
 
         }
     }
@@ -42,10 +49,12 @@ public class TC01 {
         Player player = new Player();
         GameBoard board = new GameBoard();
 
-        player.purchaseField(); //todo -- Kunne være fedt at tilgå propertyfields i arraylisten, så jeg kan købe feltet
-        board.getFieldsOwnedByPlayer(player); //todo -- igen arraylist
 
-        //Tanken er at jeg får det felt spilleren har købt og så tjekker overens med hvad vi forventer (assertEquals)
+        player.purchaseField((PropertyField) board.getFields()[4],1);
+        PropertyField[] actual = board.getFieldsOwnedByPlayer(player);
+        PropertyField[] expected = {(PropertyField)board.getFields()[4]};
+        Assert.assertArrayEquals(expected,actual);
+
 
     }
 
