@@ -9,10 +9,9 @@ public class Language {
     private Map<String, String> output = new HashMap<>();
 
     public void readFile() throws IOException {
-        String src = "src/Languages/danish.txt";
-        File langFile = new File(src);
-        InputStream fis = new FileInputStream(langFile);
-        Scanner read = new Scanner(fis);
+        String src = "danish.txt";
+        InputStream fis = Main.class.getClassLoader().getResourceAsStream(src);
+        Scanner read = new Scanner(fis, "UTF-8");
         read.useDelimiter("\n");
 
         while (read.hasNext()){
@@ -20,10 +19,6 @@ public class Language {
         }
 
         fis.close();
-    }
-
-    public Map<String, String> getOutput() {
-        return output;
     }
 
     public String getOutputMessage(String key) {
