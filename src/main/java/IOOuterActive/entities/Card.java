@@ -8,9 +8,18 @@ public class Card {
         this.text = text;
     }
 
+    /**
+     * @return Returns card name
+     */
+
     public String getName() {
         return name;
     }
+
+    /**
+     *
+     * @return Returns card text
+     */
 
     public String getText() {
         return text;

@@ -13,15 +13,27 @@ public class DiceCup {
         }
     }
 
+    /**
+     * Rolls the dices.
+     */
+
     public void throwDice() {
         for (Die die : dices) {
             die.roll();
         }
      }
 
+    /**
+     * @return Returns the dices
+     */
+
     public Die[] getDices() {
         return this.dices;
     }
+
+    /**
+     * @return Returns the sum of the dices.
+     */
 
     public int getSum() {
         int sum = 0;
