@@ -4,7 +4,7 @@ import IOOuterActive.entities.Player;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class GameTest {
+class TC03 {
 
     @Test
     public void r05_check_two_moves() {

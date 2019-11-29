@@ -12,6 +12,6 @@ Main {
 
         GameController controller = new GameController();
         controller.playGame();
-        
+
     }
 }
