@@ -77,9 +77,8 @@ public class Player {
     }
 
     public void addMoney(int amount){
-        if((account.getMoney() - amount) < 0){
+        if((account.getMoney() + amount) < 0){
             fallit = true;
-            account.setMoney(0);
         } else {
             account.addMoney(amount);
         }
