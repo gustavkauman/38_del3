@@ -6,7 +6,6 @@ import IOOuterActive.entities.Player;
 import IOOuterActive.entities.PropertyField;
 import IOOuterActive.game.Game;
 import org.junit.Test;
-import java.io.IOException;
 import static org.junit.Assert.*;
 
 /**
