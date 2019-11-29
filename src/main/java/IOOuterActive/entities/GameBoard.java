@@ -39,10 +39,18 @@ public class GameBoard {
 
     }
 
+    /**
+     * @return Returns field
+     */
     public Field[] getFields() {
         return fields;
     }
 
+    /**
+     * It takes a player as input, and returns an array with the fields owned by the player.
+     * @param player
+     * @return Returns list with fields
+     */
     public PropertyField[] getFieldsOwnedByPlayer(Player player) {
 
         List<PropertyField> list = new ArrayList<PropertyField>();
@@ -60,6 +68,11 @@ public class GameBoard {
 
     }
 
+    /**
+     * It takes a color as input, and returns a list with fields within the chosen color.
+     * @param color
+     * @return Returns list with fields
+     */
     public Field[] getFieldsByColor (String color) {
 
         List<Field> list = new ArrayList<Field>();
@@ -78,10 +91,21 @@ public class GameBoard {
         return list.toArray(out);
     }
 
+    /**
+     * This code check if a field is owned by the same player.
+     * @param fields
+     * @return Returns boolean
+     */
     public boolean fieldsAreOwnedBySamePlayer (Field[] fields) {
         return ( ((PropertyField) fields[0]).getOwner() == ((PropertyField) fields[1]).getOwner());
     }
 
+    /**
+     * This code checks the board for proforties of a specific color
+     * @param currentPlayerPos
+     * @param inputColors
+     * @return field
+     */
     public PropertyField getFieldByColor (int currentPlayerPos, String... inputColors) {
 
         List<String> colors = Arrays.asList(inputColors);
